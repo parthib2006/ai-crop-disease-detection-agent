@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const leafDiscolorationSelect = document.getElementById('leaf-discoloration');
     const wiltingDroppingSelect = document.getElementById('wilting-dropping');
     const recentWeatherSelect = document.getElementById('recent-weather');
-    const temperatureConditionSelect = document = document.getElementById('temperature-condition');
+    const temperatureConditionSelect = document.getElementById('temperature-condition');
     const recentFertilizerSelect = document.getElementById('recent-fertilizer');
     const previousPesticideSelect = document.getElementById('previous-pesticide');
     const insectsObservedSelect = document.getElementById('insects-observed');
@@ -55,6 +55,54 @@ document.addEventListener('DOMContentLoaded', () => {
     let predictedDiseaseName = '';
     let currentImageFile = null;
     let currentConfidence = 0;
+
+    function enhanceReportPresentation(container) {
+        if (!container) return;
+        if (container.dataset.enhanced === 'true') return;
+        container.dataset.enhanced = 'true';
+
+        container.classList.add('report-content');
+
+        // Wrap content into "sections" based on headings for nicer presentation.
+        const originalNodes = Array.from(container.childNodes);
+        const frag = document.createDocumentFragment();
+
+        let sectionEl = null;
+        const pushSection = () => {
+            if (sectionEl && sectionEl.childNodes.length > 0) frag.appendChild(sectionEl);
+            sectionEl = null;
+        };
+
+        for (const node of originalNodes) {
+            const isHeading =
+                node.nodeType === Node.ELEMENT_NODE &&
+                /^(H1|H2|H3)$/.test(node.tagName);
+
+            if (isHeading) {
+                pushSection();
+                sectionEl = document.createElement('section');
+                sectionEl.className = 'report-section';
+                sectionEl.appendChild(node);
+                continue;
+            }
+
+            if (!sectionEl) {
+                sectionEl = document.createElement('section');
+                sectionEl.className = 'report-section report-section--intro';
+            }
+            sectionEl.appendChild(node);
+        }
+        pushSection();
+
+        container.innerHTML = '';
+        container.appendChild(frag);
+
+        // Add simple "key point" styling to concise list items.
+        container.querySelectorAll('li').forEach((li) => {
+            const text = (li.textContent || '').trim();
+            if (text.length > 0 && text.length <= 140) li.classList.add('report-keypoint');
+        });
+    }
 
     // Function to show error message
     function showError(message) {
@@ -298,6 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     disease_name: predictedDiseaseName,
+                    lang: (window.AppLanguage && typeof window.AppLanguage.get === 'function') ? window.AppLanguage.get() : (localStorage.getItem('acd_lang') || 'en'),
                     user_context: userContext,
                 }),
             });
@@ -310,6 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             // Use marked.js to convert Markdown to HTML
             finalReportContent.innerHTML = marked.parse(data.report);
+            enhanceReportPresentation(finalReportContent);
 
             loadingSpinnerReport.classList.add('hidden');
             reportSectionStandalone.classList.remove('hidden'); // Show the standalone report section

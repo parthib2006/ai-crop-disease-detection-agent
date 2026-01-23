@@ -13,10 +13,6 @@
   <!-- Marked.js for Markdown rendering -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- Firebase SDK (Version 8 Compat for simplicity with existing auth.js) -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
   <style>
     @keyframes pulse-glow {
       0% {
@@ -60,53 +56,14 @@
 </head>
 
 <body class="bg-gradient-to-br from-green-100 to-blue-100 min-h-screen flex flex-col font-inter">
-  <!-- Frame 1 -->
-  <div id="frame1"
-    class="fixed inset-0 flex flex-col items-center justify-center bg-green-200 text-center text-3xl font-bold z-50">
-    <h1>🌿 Welcome to Crop Cure!</h1>
-    <p class="text-xl mt-2 italic text-green-800">"A healthy crop is a healthy future."</p>
-  </div>
-
-  <!-- Frame 2 -->
-  <div id="frame2"
-    class="fixed inset-0 hidden flex flex-col items-center justify-center bg-green-100 text-center text-3xl font-bold z-40">
-    <h1>🌱 AI Crop Doctor</h1>
-    <p class="text-xl mt-2 italic text-green-700">"Detect early, protect fully."</p>
-  </div>
-
-  <!-- Login Frame -->
-  <div id="loginFrame" class="fixed inset-0 hidden flex flex-col items-center justify-center bg-white z-30">
-    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border-t-4 border-green-500">
-      <div class="mb-6">
-        <img
-          src="https://media.istockphoto.com/id/1496224767/vector/vector-cute-farmer-robot-cartoon-illustration-isolated.jpg?s=1024x1024&w=is&k=20&c=Q96xOCkdNNc8-NwUVzO1Ka0CSxIfKxv7z5rKch2rAuo="
-          alt="AI Crop Doctor Logo" class="w-24 h-24 rounded-full mx-auto shadow-lg border-4 border-green-100">
-      </div>
-      <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
-      <p class="text-gray-600 mb-8">Sign in to access your crop health history.</p>
-
-      <button id="google-login-btn"
-        class="w-full flex items-center justify-center bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-4 rounded-xl transition duration-300 shadow-sm hover:shadow-md">
-        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-6 h-6 mr-3"
-          alt="Google Logo">
-        Sign in with Google
-      </button>
-
-      <p class="mt-6 text-xs text-gray-400">
-        By continuing, you agree to our Terms of Service and Privacy Policy.
-      </p>
-    </div>
-  </div>
-
   <!-- Main Content Wrapper -->
-  <div id="mainContent" class="hidden">
+  <div id="mainContent">
     <!-- 🟩 Everything else like navbar, hero section, footer goes inside here -->
 
 
     <!-- 🌱 Navigation Bar -->
     <nav class="bg-gradient-to-r from-green-700 via-green-600 to-green-800 p-4 shadow-lg z-50">
-      <div class="container mx-auto flex justify-between items-center">
-
+      <div class="container mx-auto flex items-center justify-between">
         <!-- 🌿 Logo & Brand -->
         <a href="/" class="text-white text-base font-bold flex items-center space-x-3">
           <img
@@ -114,35 +71,10 @@
             alt="AI Crop Doctor Logo"
             class="w-10 h-10 rounded-full shadow-lg border-2 border-white hover:scale-105 transition-transform duration-300" />
           <span class="tracking-wide hover:tracking-widest transition-all duration-300">AI Crop Doctor</span>
-  <nav class="bg-gradient-to-r from-green-700 via-green-600 to-green-800 p-4 shadow-lg z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      
-      <!-- 🌿 Logo & Brand -->
-      <a href="/" class="text-white text-base font-bold flex items-center space-x-3">
-  <img
-    src="https://media.istockphoto.com/id/1496224767/vector/vector-cute-farmer-robot-cartoon-illustration-isolated.jpg?s=1024x1024&w=is&k=20&c=Q96xOCkdNNc8-NwUVzO1Ka0CSxIfKxv7z5rKch2rAuo="
-    alt="AI Crop Doctor Logo"
-    class="w-10 h-10 rounded-full shadow-lg border-2 border-white hover:scale-105 transition-transform duration-300"
-  />
-  <span class="tracking-wide hover:tracking-widest transition-all duration-300">AI Crop Doctor</span>
-</a>
-
-
-      <!-- 📂 Navigation Links -->
-      <div class="space-x-4 hidden md:flex">
-        <a href="/" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Home</a>
-        <a href="/history_page" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">History</a>
-        <a href="/user_guide" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">User Guide</a>
-        <a href="/tools" target="_blank" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Tools</a>
-        <a href="#" 
-        id="emergencyBtn"
-         class="bg-red-500 nav-link text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold shadow-md">
-          <i class="fas fa-phone-alt mr-1"></i> Emergency
         </a>
 
-
-        <!-- 📂 Navigation Links -->
-        <div class="space-x-4 hidden md:flex items-center">
+        <!-- 📂 Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-4">
           <a href="/" class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Home</a>
           <a href="/history_page" target="_blank"
             class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">History</a>
@@ -150,69 +82,47 @@
             class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">User Guide</a>
           <a href="/tools" target="_blank"
             class="text-white nav-link font-medium hover:text-green-200 transition-all duration-200">Tools</a>
-          <a href="#"
+          <select class="languageSelect"
+            class="bg-green-800/40 text-white text-sm px-3 py-2 rounded-full border border-green-500/30 focus:outline-none focus:ring-2 focus:ring-green-300">
+          </select>
+          <a href="#" id="emergencyBtn"
             class="bg-red-500 nav-link text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors duration-200 font-semibold shadow-md">
             <i class="fas fa-phone-alt mr-1"></i> Emergency
           </a>
-
-          <!-- User Profile Section -->
-          <div
-            class="flex items-center space-x-3 bg-green-800 bg-opacity-30 rounded-full px-3 py-1 ml-4 border border-green-500/30">
-            <span id="user-name-display" class="text-green-100 font-medium text-sm hidden">User</span>
-            <img id="user-avatar" src="" alt="User" class="w-8 h-8 rounded-full border-2 border-white hidden">
-            <button onclick="signOut()" class="text-green-200 hover:text-white text-xs ml-2">
-              <i class="fas fa-sign-out-alt"></i>
-            </button>
-          </div>
         </div>
 
         <!-- 📱 Mobile Menu Button -->
-        <div class="md:hidden">
-          <button id="menuToggle" class="text-white text-2xl focus:outline-none">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
+        <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
 
       <!-- 📱 Mobile Dropdown -->
-      <div id="mobileMenu" class="md:hidden mt-2 space-y-2 px-4 hidden">
+      <div id="mobileMenu" class="md:hidden hidden mt-3 space-y-2 px-2">
         <a href="/" class="block text-white font-medium hover:text-green-200">Home</a>
         <a href="/history_page" target="_blank" class="block text-white font-medium hover:text-green-200">History</a>
         <a href="/user_guide" target="_blank" class="block text-white font-medium hover:text-green-200">User Guide</a>
         <a href="/tools" target="_blank" class="block text-white font-medium hover:text-green-200">Tools</a>
-        <a href="#"
+        <select class="languageSelect"
+          class="w-full bg-green-800/40 text-white text-sm px-3 py-2 rounded-xl border border-green-500/30 focus:outline-none focus:ring-2 focus:ring-green-300">
+        </select>
+        <a href="#" id="emergencyBtnMobile"
           class="block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 font-semibold text-center">
           <i class="fas fa-phone-alt mr-1"></i> Emergency
         </a>
-        <button onclick="signOut()" class="block w-full text-left text-green-200 hover:text-white font-medium py-2">
-          Sign Out
-        </button>
       </div>
     </nav>
-
-
-
 
     <!-- JS: Toggle mobile menu -->
     <script>
       const menuToggle = document.getElementById('menuToggle');
       const mobileMenu = document.getElementById('mobileMenu');
-      menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
     </script>
-    <!-- 📱 Mobile Dropdown -->
-    <div id="mobileMenu" class="md:hidden mt-2 space-y-2 px-4 hidden">
-      <a href="/" class="block text-white font-medium hover:text-green-200">Home</a>
-      <a href="/history_page" target="_blank" class="block text-white font-medium hover:text-green-200">History</a>
-      <a href="/user_guide" target="_blank" class="block text-white font-medium hover:text-green-200">User Guide</a>
-      <a href="/tools" target="_blank" class="block text-white font-medium hover:text-green-200">Tools</a>
-      <a href="#" id="emergencyBtnMobile"
-       class="block bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 font-semibold text-center">
-        <i class="fas fa-phone-alt mr-1"></i> Emergency
-      </a>
-    </div>
-  </nav>
 
   <!-- Emergency Support Modal -->
 <div id="emergencyModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50">
@@ -221,23 +131,29 @@
 
     <form id="emergencyForm">
       <label class="block mb-2 font-medium">Name *</label>
-      <input type="text" required class="w-full border px-3 py-2 rounded mb-3">
+      <input id="emergencyName" name="name" type="text" required
+        class="w-full border px-3 py-2 rounded mb-3" placeholder="Your name">
+
+      <label class="block mb-2 font-medium">Phone Number *</label>
+      <input id="emergencyPhone" name="phone" type="tel" inputmode="tel" required
+        class="w-full border px-3 py-2 rounded mb-3" placeholder="e.g., +91 98765 43210">
 
       <label class="block mb-2 font-medium">Describe your issue *</label>
-      <textarea required class="w-full border px-3 py-2 rounded mb-3"></textarea>
+      <textarea id="emergencyIssue" name="issue" required class="w-full border px-3 py-2 rounded mb-3"
+        placeholder="Describe the crop/plant issue, symptoms, and location..."></textarea>
 
       <label class="block mb-2 font-medium">
         Upload image (optional, max 2 MB)
       </label>
-      <input type="file" id="userImage" accept="image/*" class="w-full mb-3">
+      <input type="file" id="userImage" name="image" accept="image/*" class="w-full mb-3">
 
       <div class="flex justify-end gap-2">
         <button type="button" id="closeEmergency"
           class="px-4 py-2 bg-gray-400 text-white rounded">
           Cancel
         </button>
-        <button type="submit"
-          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+        <button id="emergencySubmitBtn" type="submit"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-60 disabled:cursor-not-allowed">
           Submit
         </button>
       </div>
@@ -249,50 +165,7 @@
     </p>
   </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-
-    const emergencyBtn = document.getElementById('emergencyBtn');
-    const emergencyBtnMobile = document.getElementById('emergencyBtnMobile');
-    const emergencyModal = document.getElementById('emergencyModal');
-    const closeEmergency = document.getElementById('closeEmergency');
-    const emergencyForm = document.getElementById('emergencyForm');
-    const emergencySuccess = document.getElementById('emergencySuccess');
-    const userImage = document.getElementById('userImage');
-
-    function openEmergencyModal(e) {
-      e.preventDefault();
-      emergencyModal.classList.remove('hidden');
-    }
-
-    emergencyBtn?.addEventListener('click', openEmergencyModal);
-    emergencyBtnMobile?.addEventListener('click', openEmergencyModal);
-
-    closeEmergency.addEventListener('click', () => {
-      emergencyModal.classList.add('hidden');
-      emergencyForm.reset();
-      emergencySuccess.classList.add('hidden');
-    });
-
-    emergencyForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (userImage.files.length > 0) {
-        const fileSizeMB = userImage.files[0].size / 1024 / 1024;
-        if (fileSizeMB > 2) {
-          alert('Image size must be less than 2 MB');
-          return;
-        }
-      }
-
-      emergencySuccess.classList.remove('hidden');
-      emergencyForm.reset();
-
-      console.log('Emergency form submitted (frontend only)');
-    });
-
-  });
-</script>
+<script src="{{ url_for('static', filename='js/emergency.js') }}"></script>
 
   
 
@@ -373,22 +246,6 @@
               </button>
             </div>
           </div>
-                <!-- Loading Indicator for detailed report generation -->
-                <div id="loading-spinner-report" class="hidden flex flex-col items-center justify-center mb-8">
-    <div class="relative w-24 h-24 mb-6">
-        <div class="absolute inset-0 border-4 border-green-100 rounded-full"></div>
-        <div class="loader-ring absolute inset-0 border-4 border-t-green-500 border-l-green-500 rounded-full"></div>
-    </div>
-
-    <p class="text-gray-700 text-lg font-medium text-center">
-        <span id="loading-text-report">Generating your personalized report...</span>
-        <br>
-        <span class="text-sm text-gray-500">This might take a moment as our AI Agronomist compiles the best advice for you.</span>
-    </p>
-</div>
-
-
-
           <h3 class="text-2xl font-semibold text-gray-800 mb-4">Try with Sample Images:</h3>
           <!--  grid for rows with 5 images each -->
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -918,7 +775,10 @@
 
           <!-- Loading Indicator for detailed report generation -->
           <div id="loading-spinner-report" class="hidden flex flex-col items-center justify-center mb-8">
-            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24 mb-4"></div>
+            <div class="relative w-24 h-24 mb-6">
+              <div class="absolute inset-0 border-4 border-green-100 rounded-full"></div>
+              <div class="loader-ring absolute inset-0 border-4 border-t-green-500 border-l-green-500 rounded-full"></div>
+            </div>
             <p class="text-gray-700 text-lg font-medium text-center">
               <span id="loading-text-report">Generating your personalized report...</span>
               <br>
@@ -970,6 +830,7 @@
         © 2026 AI Crop Doctor. All rights reserved.
       </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
     <!-- Auth JS -->
@@ -1009,8 +870,12 @@
     <!-- Pass Firebase Config from Flask to JS -->
     <script>
       window.FIREBASE_CONFIG = {{ firebase_context | tojson | safe if firebase_context else '{}' }};
+      // Auth disabled: ensure main content is visible.
+      window.addEventListener('DOMContentLoaded', () => {
+        const mainContent = document.getElementById('mainContent');
+        if (mainContent) mainContent.classList.remove('hidden');
+      });
     </script>
-    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
 
 </html>
